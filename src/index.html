@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hot & Cold</title>
+    <link rel="shortcut icon" href="assets/img/fav.png" type="image/x-icon">
+    <script src="assets/js/main.js" type="text/javascript" defer="defer"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+</head>
+<body>
+    <section id="weather">
+        <!--search-->
+        <div class="row row-search">
+            <div class="search-container">
+                <form class="form-inline form-search">
+                    <i class="fas fa-search icon"></i>
+                    <input id="search-field" class="form-control mr-sm-2" type="search" autofocus required autocomplete="on" placeholder="Enter your location"/>
+                    <button id="btn-search" class="btn" type="button">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!--main-->
+        <div class="row main-info">
+            <div id="main-heading" class="col-12">
+                <!--<div class="spinner-border" role="status">
+                     <span class="sr-only">Loading...</span>
+                </div>-->
+                <!-- main weather info goes here -->
+                <div id="current-weather-info">
+                    <!-- <img class="current-weather-icon" src="assets/icons/day/116.png" alt="weather" />
+                    <h1 class="degree-info">23&deg;<span class="feel-temp">feels like 18 &deg;</span></h1>
+                    <h3 class="location">London, England</h3>
+                    <h4 class="wind"><i class="fas fa-wind"></i> 9 <span class="metric">k/h</span></h4> -->
+                </div>
+            </div>
+        </div>
+        <!--forecast-->
+        <div class="container">
+            <div id="forecast-container" class="row">
+<!-- 
+                <div class="col-sm-12 col-lg-2 card align-items-center">
+                    <div>
+                        <p>08/02</p>
+                    </div>
+                    <div>
+                        <p>9&deg; / 10&deg;</p>
+                    </div>
+                    <div>
+                        <p>Moderate or heavy rain shower</p>
+                    </div>
+                    <div class="forecast-icon-container">
+                        <img class="test-img" src="assets/icons/day/116.png" alt="weather" />
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>

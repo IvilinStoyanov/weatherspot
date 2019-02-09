@@ -1,0 +1,287 @@
+﻿* {
+    box-sizing: border-box;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+html {
+    margin: 0;
+    font-size: 62.5%; 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+
+}
+
+#weather {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(../img/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.icon {
+    color: white;
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+
+}
+
+/*********** SEARCH ***********/
+.search-container {
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.fa-search {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+#btn-search {
+    color: #fff;
+    border-color: #fff;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+@media (min-width: 992px)  {
+    #btn-search {
+        font-size: 15px;
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 992px) {
+    .fa-search {
+        font-size: 16px;
+
+    }
+}
+
+#search-field {
+    background-color: rgba(255, 255, 255, 0.00);
+    min-height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: white;
+    width: 180px;
+    font-size: 16px;
+    border-radius: 0;
+}
+
+@media (min-width: 992px) {
+    #search-field {
+        font-size: 18px;
+        width: 200px;
+    }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white !important;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    color: white !important;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: white !important;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: white !important;
+}
+
+#search-field:focus {
+    outline: none !important;
+}
+
+.form-control {
+    box-shadow: none !important;
+}
+
+#search-field:hover {
+    border-bottom: 1px solid #06cfeb;
+}
+
+
+/*********** main ***********/
+
+.main-info {
+    color: white;
+    margin-bottom: 60px;
+    margin-top: 60px;
+}
+
+div#main-heading {
+    text-align: center;
+}
+
+.degree-info {
+    font-size: 4.5em;
+}
+
+.feel-temp {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.location {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.wind {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.metric {
+    font-weight: 300;
+    font-size: .7em;
+}
+
+.current-weather-icon {
+    width: auto;
+    height: auto;
+}
+
+
+@media (min-width: 576px) {
+    .degree-info {
+        font-size: 5.5em;
+    }
+    .feel-temp {
+        font-size: 2rem;
+    }
+
+    .location {
+        font-size: 2.5rem;
+    }
+
+    .wind {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .degree-info {
+        font-size: 6em;
+    }
+    .feel-temp {
+        font-size: 2rem;
+    }
+
+    .location {
+        font-size: 2.2rem;
+    }
+
+    .wind {
+        font-size: 2.7rem;
+    }
+    .current-weather-icon {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (min-width: 992px) {
+    .degree-info {
+        font-size: 8rem;
+    }
+
+    .feel-temp {
+        font-size: 2.2rem;
+    }
+
+    .location {
+        font-size: 2.5rem;
+    }
+
+    .wind {
+        font-size: 3rem;
+    }
+
+    .current-weather-icon {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+
+/*slider*/
+.card {
+    font-size: 1rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.00);
+    color: white;
+    background-color: rgba(20, 20, 20, 0.40);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+#forecast-container {
+    margin-bottom: 5px;
+}
+
+
+
+
+.test-img {
+    width: 40px;
+    height: 40px;
+}
+
+
+@media (min-width: 576px) {
+    .card {
+        font-size: 1.3rem;
+    }
+    .test-img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (min-width: 768px) {
+
+
+    .test-img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    #forecast-container {
+        justify-content: center;
+    }
+
+    .test-img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
