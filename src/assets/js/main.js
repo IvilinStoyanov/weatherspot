@@ -42,6 +42,23 @@ function requestForecast() {
     }
 
 function drawElements() {
+    let weatherType = rawDataForecast.current.condition.text;
+    let weatherSplit =  weatherType.split(' ');
+
+   // TODO: Better logic
+    for (let index = 0; index < weatherSplit.length; index++) {
+        if("rain" == weatherSplit[index]) {
+            console.log("Rainy");
+        } else if("snow" == weatherSplit[index]) {
+            console.log("snow");
+        } else if("thunder" == weatherSplit[index]) {
+            console.log("thunder");
+        }  else if("cloudy" == weatherSplit[index]) {
+        console.log("cloudy");
+        } else if("Mist" == weatherSplit[index]) {
+            console.log("Mist");
+        }
+    }
     let markup =
         `
          <img class="current-weather-icon" src="http:${rawDataForecast.current.condition.icon}" alt="weather" />
@@ -51,6 +68,9 @@ function drawElements() {
         `;
 
     document.getElementById("current-weather-info").insertAdjacentHTML("afterbegin", markup);
+
+
+
 
     // TODO: Better implementation
     for (var i = 5; i >= 1; i--) {
