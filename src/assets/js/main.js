@@ -6,7 +6,7 @@ const key = "698eb61955f747449f7140125190602";
 let rawDataForecast;
 let town;
 
-let test = false;
+// let test = false;
 
 const searchField = document.getElementById("search-field");
 const btnSearch = document.getElementById("btn-search");
@@ -32,14 +32,13 @@ function requestForecast() {
     
         request.onload = function () {           
                 rawDataForecast = JSON.parse(this.response);
-                console.log(rawDataForecast);
                 deleteSpinner();
                 drawElements();
         }
         request.send();
         deleteContent()
         deleteForecast();
-        test = false;
+        // test = false;
         drawSpinner(); 
         }
     }
@@ -47,31 +46,26 @@ function requestForecast() {
 function drawElements() {
     let weatherType = rawDataForecast.current.condition.text;
     let weatherSplit =  weatherType.split(' ');
-                        // TODO:
-                        console.log("Stop canvas");
-                        clearcanvas1();
-                        clearcanvas2();
-                        clearCanvas3();
-    test = true;
+    // TODO:
+    cancelAnim();
+    clearcanvas1();
+    clearcanvas2();
+    clearCanvas3();
+    clearcanvas4();
+    // test = true;
  
 
    // TODO: Better logic
-
-//    function animloop() {
-//     //   animateRainTrough();
-//     //   animateRain();
-//     //   animateLightning();
-//       requestAnimationFrame(animloop);
-//     }
     for (let index = 0; index < weatherSplit.length; index++) {
         if("rain" == weatherSplit[index]) {
             console.log("Rainy");
-                animloop();
-
+            animRain();
         } else if("snow" == weatherSplit[index]) {
             console.log("snow");
+            animSnow();
         } else if("thunder" == weatherSplit[index]) {
             console.log("thunder");
+            animThunder();
         }  else if("cloudy" == weatherSplit[index]) {
         console.log("cloudy");
         } else if("Mist" == weatherSplit[index]) {
@@ -173,9 +167,11 @@ function deleteForecast() {
 var canvas1 = document.getElementById('canvas1');
 var canvas2 = document.getElementById('canvas2');
 var canvas3 = document.getElementById('canvas3');
+var canvas4 = document.getElementById('canvas4');
 var ctx1 = canvas1.getContext('2d');
 var ctx2 = canvas2.getContext('2d');
 var ctx3 = canvas3.getContext('2d');
+var ctx4 = canvas4.getContext('2d');
 
 var rainthroughnum = 50;
 var speedRainTrough = 25;
@@ -188,11 +184,11 @@ var lightning = [];
 var lightTimeCurrent = 0;
 var lightTimeTotal = 0;
 
-var w = canvas1.width = canvas2.width = canvas3.width = window.innerWidth;
-var h = canvas1.height = canvas2.height = canvas3.height = window.innerHeight;
+var w = canvas1.width = canvas2.width = canvas3.width = canvas4.width = window.innerWidth;
+var h = canvas1.height = canvas2.height = canvas3.height = canvas4.height = window.innerHeight;
 window.addEventListener('resize', function() {
-  w = canvas1.width = canvas2.width = canvas3.width = window.innerWidth;
-  h = canvas1.height = canvas2.height = canvas3.height = window.innerHeight;
+  w = canvas1.width = canvas2.width = canvas3.width = canvas4.width = window.innerWidth;
+  h = canvas1.height = canvas2.height = canvas3.height = canvas4.height = window.innerHeight;
 });
 
 function random(min, max) {
@@ -213,6 +209,10 @@ function clearCanvas3() {
   ctx3.fillRect(0, 0, w, h);
   ctx3.globalCompositeOperation = 'source-over';
 };
+
+function clearcanvas4() {
+  ctx4.clearRect(0, 0, w, h);
+}
 
 function createRainTrough() {
   for (var i = 0; i < rainthroughnum; i++) {
@@ -238,6 +238,75 @@ function createRain() {
     };
   }
 }
+
+var mp = 25 // snow num particles
+var particles = [];
+	for(var i = 0; i < mp; i++)
+	{
+		particles.push({
+			x: Math.random()*w, //x-coordinate
+			y: Math.random()*h, //y-coordinate
+			r: Math.random()*4+1, //radius
+			d: Math.random()*mp //density
+		})
+	}
+	
+  //Lets draw 
+function drawSnow()
+  {
+		ctx4.clearRect(0, 0, w, h);
+		
+		ctx4.fillStyle = "rgba(255, 255, 255, 0.8)";
+		ctx4.beginPath();
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			ctx4.moveTo(p.x, p.y);
+			ctx4.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+		}
+		ctx4.fill();
+		update();
+}
+	
+var angle = 0;
+	function update()
+	{
+		angle += 0.01;
+		for(var i = 0; i < mp; i++)
+		{
+			var p = particles[i];
+			//Updating X and Y coordinates
+			//We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+			//Every particle has its own density which can be used to make the downward movement different for each flake
+			//Lets make it more random by adding in the radius
+			p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+			p.x += Math.sin(angle) * 2;
+			
+			//Sending flakes back from the top when it exits
+			//Lets make it a bit more organic and let flakes enter from the left and right also.
+			if(p.x > w+5 || p.x < -5 || p.y > h)
+			{
+				if(i%3 > 0) //66.67% of the flakes
+				{
+					particles[i] = {x: Math.random()*w, y: -10, r: p.r, d: p.d};
+				}
+				else
+				{
+					//If the flake is exitting from the right
+					if(Math.sin(angle) > 0)
+					{
+						//Enter from the left
+						particles[i] = {x: -5, y: Math.random()*h, r: p.r, d: p.d};
+					}
+					else
+					{
+						//Enter from the right
+						particles[i] = {x: w+5, y: Math.random()*h, r: p.r, d: p.d};
+					}
+				}
+			}
+		}
+	}
 
 function createLightning() {
   var x = random(100, w - 100);
@@ -265,7 +334,6 @@ function drawRainTrough(i) {
   var grd = ctx1.createLinearGradient(0, RainTrough[i].y, 0, RainTrough[i].y + RainTrough[i].length);
   grd.addColorStop(0, "rgba(255,255,255,0)");
   grd.addColorStop(1, "rgba(255,255,255," + RainTrough[i].opacity + ")");
-
   ctx1.fillStyle = grd;
   ctx1.fillRect(RainTrough[i].x, RainTrough[i].y, 1, RainTrough[i].length);
   ctx1.fill();
@@ -360,17 +428,31 @@ function init() {
 }
 init();
 
-test = true;
+// test = true;
+let animFrame;
 
-// animloop();
-function animloop() {
+function animRain() {
     animateRainTrough();
     animateRain();
-if(test) {
-    requestAnimationFrame(animloop);
+
+   animFrame = requestAnimationFrame(animRain); 
 }
-  
-  
+
+function animSnow() {
+  drawSnow();
+  animFrame = requestAnimationFrame(animSnow);
+}
+
+function animThunder() {
+  animateRainTrough();
+  animateRain();
+  animateLightning();
+ animFrame = requestAnimationFrame(animThunder);
+
+}
+
+function cancelAnim() {
+  window.cancelAnimationFrame(animFrame);
 }
 
 
