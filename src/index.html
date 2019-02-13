@@ -4,26 +4,37 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hot & Cold</title>
-    <link rel="shortcut icon" href="assets/img/fav.png" type="image/x-icon">
+    <title>Weatherspot</title>
+    <!--<link rel="shortcut icon" href="assets/img/fav.png" type="image/x-icon">-->
     <script src="assets/js/main.js" type="text/javascript" defer="defer"></script>
+    <script src="assets/js/autocomplete.js" type="text/javascript" defer="defer"></script>
+    <script src="assets/js/load.js" type="text/javascript" defer="defer"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 <body>
+    <div class="thunder">
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+        <canvas id="canvas3"></canvas>
+        <canvas id="canvas4"></canvas>
+    </div>
     <section id="weather">
         <!--search-->
         <div class="row row-search">
             <div class="search-container">
-                <form class="form-inline form-search">
-                    <i class="fas fa-search icon"></i>
-                    <input id="search-field" class="form-control mr-sm-2" type="search" autofocus required autocomplete="on" placeholder="Enter your location"/>
-                    <button id="btn-search" class="btn" type="button">
-                        Search
-                    </button>
-                </form>
+                <div class="autocomplete">
+                    <form class="form-inline form-search">
+                        <i class="fas fa-search icon"></i>
+                        <input id="search-field" class="form-control mr-sm-2" type="search" autofocus required autocomplete="off" placeholder="Enter your location" />
+                        <button id="btn-search" class="btn" type="button">
+                            Search
+                        </button>
+                    </form>
+                </div>
+              
             </div>
         </div>
         <!--main-->
@@ -38,7 +49,26 @@
         <!--forecast-->
         <div class="container">
             <div id="forecast-container" class="row">
+<<<<<<< HEAD
                   <!--forecast card goes here-->   
+=======
+                <!--
+                                <div class="col-sm-12 col-lg-2 card align-items-center">
+                                    <div>
+                                        <p>08/02</p>
+                                    </div>
+                                    <div>
+                                        <p>9&deg; / 10&deg;</p>
+                                    </div>
+                                    <div>
+                                        <p>Moderate or heavy rain shower</p>
+                                    </div>
+                                    <div class="forecast-icon-container">
+                                        <img class="test-img" src="assets/icons/day/116.png" alt="weather" />
+                                    </div>
+                                </div> -->
+
+>>>>>>> 382d149b9392860b4589d79edf57ad5ec81e428a
             </div>
         </div>
     </section>
