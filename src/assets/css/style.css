@@ -11,9 +11,8 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-
-
 }
+
 
 #weather {
     min-height: 100vh;
@@ -127,6 +126,16 @@ body {
 
 div#main-heading {
     text-align: center;
+    margin: 0 auto;
+}
+
+.additional-information {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.sunrise-icon {
+    font-size: 4rem;
 }
 
 .degree-info {
