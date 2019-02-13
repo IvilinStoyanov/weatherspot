@@ -27,7 +27,6 @@ function loadJSON(callback) {
 autocomplete(document.getElementById("search-field"));
 
 function autocomplete(inp) {
-    console.log(dataCounties);
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
