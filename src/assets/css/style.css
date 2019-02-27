@@ -13,7 +13,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-
 #weather {
     min-height: 100vh;
     width: 100%;
@@ -124,6 +123,7 @@ body {
     color: white;
     margin-bottom: 60px;
     margin-top: 60px;
+    z-index: 6;
 }
 
 div#main-heading {
@@ -142,6 +142,7 @@ div#main-heading {
 
 .degree-info {
     font-size: 4.5em;
+    margin-bottom: 0;
 }
 
 .feel-temp {
@@ -152,6 +153,7 @@ div#main-heading {
 .location {
     font-size: 2rem;
     font-weight: 400;
+    margin-top: 3px;
 }
 
 .wind {
@@ -320,6 +322,10 @@ canvas {
     left: 0;
 }
 
+#canvas4 {
+    z-index: 3;
+}
+
 #canvas3 {
     z-index: 1;
 }
@@ -392,8 +398,6 @@ input[type=submit] {
 
     .autocomplete-items div {
         padding: 10px;
-Saint Barthélemy
- weather
         cursor: pointer;
         font-size: 1.3em;
         background-color: #fff;
@@ -403,7 +407,6 @@ Saint Barthélemy
 div#search-fieldautocomplete-list {
     max-height: 400px;
     overflow: auto;
-    
 }
 
 .autocomplete-items div:hover {
@@ -414,3 +417,44 @@ div#search-fieldautocomplete-list {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }
+
+.favorite {
+    text-align: center;
+    margin: 0 auto;
+    z-index: 6;
+}
+
+#like-btn {
+    background-color: rgba(255, 255, 255, 0.00);
+    border: none;
+}
+
+.like-icon {
+    color: white;
+    font-size: 2rem;
+    transition: color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+
+    .like-icon:hover {
+        cursor: pointer;
+        color: #06cfeb;
+    }
+
+
+.hearth-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 3rem;
+    transition: color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+
+    .hearth-icon:hover {
+        cursor: pointer;
+        color: #06cfeb;
+    }

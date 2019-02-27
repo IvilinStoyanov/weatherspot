@@ -11,7 +11,6 @@ let town;
 const searchField = document.getElementById("search-field");
 const btnSearch = document.getElementById("btn-search");
 
-
 btnSearch.addEventListener('click', requestForecast);
 
 document.addEventListener('keypress', function (event) {
@@ -21,6 +20,50 @@ document.addEventListener('keypress', function (event) {
         requestForecast();
     }
 });
+/*** get position to end user ***/
+ var locationPromise = getLocation();
+   locationPromise
+       .then(function (loc) {
+           console.log(loc);
+           sessionStorage.setItem("location", loc);
+           if (sessionStorage.getItem("location") != null) {
+               initRequest();
+           }
+       })
+       .catch(function (err) { console.log("No location"); });
+
+function getLocation(callback) {
+    var promise = new Promise(function (resolve, reject) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    resolve(position.coords.latitude.toFixed(4) + "," + position.coords.longitude.toFixed(4))
+                }
+            );
+        } else {
+            reject("Unknown");
+        }
+    });
+    return promise;
+}
+
+function initRequest() {
+    var userLocation = sessionStorage.getItem("location");
+
+    let request = new XMLHttpRequest();
+    request.open('GET', "http://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + userLocation + "&days=6", true);
+
+    request.onload = function () {
+        rawDataForecast = JSON.parse(this.response);
+        console.log(rawDataForecast);
+        deleteSpinner();
+        drawElements();
+    }
+    request.send();
+    deleteContent()
+    deleteForecast();
+    drawSpinner();
+}
 
 function requestForecast() {
 
@@ -28,10 +71,11 @@ function requestForecast() {
 
     if (town !== undefined && town !== "") {
         let request = new XMLHttpRequest();
-        request.open('GET', "https://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + town + "&days=6", true);
+        request.open('GET', "http://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + town + "&days=6", true);
 
         request.onload = function () {
             rawDataForecast = JSON.parse(this.response);
+            console.log(rawDataForecast);
             deleteSpinner();
             drawElements();
         }
@@ -42,6 +86,8 @@ function requestForecast() {
         drawSpinner();
     }
 }
+
+
 
 function drawElements() {
     let weatherType = rawDataForecast.current.condition.text;
@@ -72,10 +118,11 @@ function drawElements() {
             console.log("Mist");
         }
     }
+    // <button id="like"><i class="far fa-heart like-icon"></i></button>
     let markup =
         `
          <img class="current-weather-icon" src="http:${rawDataForecast.current.condition.icon}" alt="weather" />
-         <h1 class="degree-info">${Math.floor(rawDataForecast.current.temp_c)}&deg; <span class="feel-temp">feels like ${Math.ceil(rawDataForecast.current.feelslike_c)}&deg;</span></h1 >
+         <h1 class="degree-info">${Math.floor(rawDataForecast.current.temp_c)}&deg;<span class="feel-temp">feels like ${Math.ceil(rawDataForecast.current.feelslike_c)}&deg;</span></h1>
          <h3 class="location">${rawDataForecast.location.name}, ${rawDataForecast.location.country}</h3>
          <h4 class="wind"><i class="fas fa-wind"></i> ${rawDataForecast.current.wind_kph}<span class="metric">k/h</span></h4>
         `;
@@ -161,7 +208,6 @@ function deleteForecast() {
         }
     }
 }
-
 
 /***** DYNAMIC ******/
 var canvas1 = document.getElementById('canvas1');
