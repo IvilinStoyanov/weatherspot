@@ -51,7 +51,7 @@ function initRequest() {
     var userLocation = sessionStorage.getItem("location");
 
     let request = new XMLHttpRequest();
-    request.open('GET', "http://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + userLocation + "&days=6", true);
+    request.open('GET', "https://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + userLocation + "&days=6", true);
 
     request.onload = function () {
         rawDataForecast = JSON.parse(this.response);
@@ -71,7 +71,7 @@ function requestForecast() {
 
     if (town !== undefined && town !== "") {
         let request = new XMLHttpRequest();
-        request.open('GET', "http://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + town + "&days=6", true);
+        request.open('GET', "https://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + town + "&days=6", true);
 
         request.onload = function () {
             rawDataForecast = JSON.parse(this.response);
