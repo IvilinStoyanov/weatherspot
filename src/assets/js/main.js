@@ -21,13 +21,12 @@ document.addEventListener('keypress', function (event) {
  var locationPromise = getLocation();
    locationPromise
        .then(function (loc) {
-           console.log(loc);
            sessionStorage.setItem("location", loc);
            if (sessionStorage.getItem("location") != null) {
                initRequest();
            }
        })
-       .catch(function (err) { console.log("No location"); });
+       .catch(function (err) { });
 
 function getLocation(callback) {
     var promise = new Promise(function (resolve, reject) {
@@ -52,7 +51,6 @@ function initRequest() {
 
     request.onload = function () {
         rawDataForecast = JSON.parse(this.response);
-        console.log(rawDataForecast);
         deleteSpinner();
         drawElements();
     }
@@ -72,7 +70,6 @@ function requestForecast() {
 
         request.onload = function () {
             rawDataForecast = JSON.parse(this.response);
-            console.log(rawDataForecast);
             deleteSpinner();
             drawElements();
         }
@@ -100,18 +97,15 @@ function drawElements() {
     // TODO: Better logic
     for (let index = 0; index < weatherSplit.length; index++) {
         if ("rain" == weatherSplit[index]) {
-            console.log("Rainy");
             animRain();
         } else if ("snow" == weatherSplit[index]) {
-            console.log("snow");
             animSnow();
         } else if ("thunder" == weatherSplit[index]) {
-            console.log("thunder");
             animThunder();
         } else if ("cloudy" == weatherSplit[index]) {
-            console.log("cloudy");
+            // TODO: Add Clouds
         } else if ("Mist" == weatherSplit[index]) {
-            console.log("Mist");
+            // TODO: Add Mist
         }
     }
     // <button id="like"><i class="far fa-heart like-icon"></i></button>
@@ -127,7 +121,6 @@ function drawElements() {
 
     // TODO: Better implementation
     for (var i = 0; i < 3; i++) {
-        console.log(rawDataForecast.forecast.forecastday[i]);
         let date =
             rawDataForecast.forecast.forecastday[i].date;
 
