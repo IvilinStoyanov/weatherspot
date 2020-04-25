@@ -1,7 +1,7 @@
 ﻿* {
     box-sizing: border-box;
-    /* overflow-y: hidden;
-    overflow-x: hidden; */
+    /* overflow-y: hidden; */
+    /* overflow-x: hidden;  */
 }
 
 html {
@@ -141,7 +141,7 @@ div#main-heading {
 }
 
 .degree-info {
-    font-size: 4.5em;
+    font-size: 6em;
     margin-bottom: 0;
 }
 
@@ -174,7 +174,7 @@ div#main-heading {
 
 @media (min-width: 576px) {
     .degree-info {
-        font-size: 5.5em;
+        font-size: 7em;
     }
 
     .feel-temp {
@@ -192,7 +192,7 @@ div#main-heading {
 
 @media (min-width: 768px) {
     .degree-info {
-        font-size: 6em;
+        font-size: 8em;
     }
 
     .feel-temp {
@@ -215,11 +215,11 @@ div#main-heading {
 
 @media (min-width: 992px) {
     .degree-info {
-        font-size: 8rem;
+        font-size: 11rem;
     }
 
     .feel-temp {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
     }
 
     .location {
@@ -251,7 +251,7 @@ div#main-heading {
 }
 
 #forecast-container {
-    margin-bottom: 5px;
+    margin-bottom: 35px;
 }
 
 .test-img {

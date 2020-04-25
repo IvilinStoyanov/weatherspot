@@ -1,12 +1,9 @@
 // JavaScript source code
 
-// test api key
-const key = "698eb61955f747449f7140125190602";
+const key = "0234d4c74bda49beb7c193549202404";
 
 let rawDataForecast;
 let town;
-
-// let test = false;
 
 const searchField = document.getElementById("search-field");
 const btnSearch = document.getElementById("btn-search");
@@ -51,7 +48,7 @@ function initRequest() {
     var userLocation = sessionStorage.getItem("location");
 
     let request = new XMLHttpRequest();
-    request.open('GET', "https://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + userLocation + "&days=6", true);
+    request.open('GET', "https://api.weatherapi.com/v1/forecast.json?key=" + key + "&query=" + userLocation + "&days=" + 3, true);
 
     request.onload = function () {
         rawDataForecast = JSON.parse(this.response);
@@ -71,7 +68,7 @@ function requestForecast() {
 
     if (town !== undefined && town !== "") {
         let request = new XMLHttpRequest();
-        request.open('GET', "https://api.apixu.com/v1/forecast.json?key=" + key + "&q=" + town + "&days=6", true);
+        request.open('GET', "https://api.weatherapi.com/v1/forecast.json?key=" + key + "&query=" + town + "&days=3", true);
 
         request.onload = function () {
             rawDataForecast = JSON.parse(this.response);
@@ -82,7 +79,6 @@ function requestForecast() {
         request.send();
         deleteContent()
         deleteForecast();
-        // test = false;
         drawSpinner();
     }
 }
@@ -130,7 +126,8 @@ function drawElements() {
     document.getElementById("current-weather-info").insertAdjacentHTML("afterbegin", markup);
 
     // TODO: Better implementation
-    for (var i = 5; i >= 1; i--) {
+    for (var i = 0; i < 3; i++) {
+        console.log(rawDataForecast.forecast.forecastday[i]);
         let date =
             rawDataForecast.forecast.forecastday[i].date;
 
