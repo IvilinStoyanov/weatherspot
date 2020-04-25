@@ -18,15 +18,15 @@ document.addEventListener('keypress', function (event) {
     }
 });
 /*** get position to end user ***/
- var locationPromise = getLocation();
-   locationPromise
-       .then(function (loc) {
-           sessionStorage.setItem("location", loc);
-           if (sessionStorage.getItem("location") != null) {
-               initRequest();
-           }
-       })
-       .catch(function (err) { });
+var locationPromise = getLocation();
+locationPromise
+    .then(function (loc) {
+        sessionStorage.setItem("location", loc);
+        if (sessionStorage.getItem("location") != null) {
+            initRequest();
+        }
+    })
+    .catch(function (err) { });
 
 function getLocation(callback) {
     var promise = new Promise(function (resolve, reject) {
@@ -61,7 +61,6 @@ function initRequest() {
 }
 
 function requestForecast() {
-
     town = document.getElementById("search-field").value;
 
     if (town !== undefined && town !== "") {
@@ -85,14 +84,11 @@ function requestForecast() {
 function drawElements() {
     let weatherType = rawDataForecast.current.condition.text;
     let weatherSplit = weatherType.split(' ');
-    // TODO:
     cancelAnim();
     clearcanvas1();
     clearcanvas2();
     clearCanvas3();
     clearcanvas4();
-    // test = true;
-
 
     // TODO: Better logic
     for (let index = 0; index < weatherSplit.length; index++) {
@@ -455,13 +451,11 @@ function init() {
 }
 init();
 
-// test = true;
 let animFrame;
 
 function animRain() {
     animateRainTrough();
     animateRain();
-
     animFrame = requestAnimationFrame(animRain);
 }
 
