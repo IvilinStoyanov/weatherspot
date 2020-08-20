@@ -1,5 +1,5 @@
 // JavaScript source code
-
+// free key
 const key = "c0e14ef47b5b41e4af155613202008";
 
 let rawDataForecast;
