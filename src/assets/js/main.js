@@ -1,6 +1,6 @@
 // JavaScript source code
 
-const key = "0234d4c74bda49beb7c193549202404";
+const key = "c0e14ef47b5b41e4af155613202008";
 
 let rawDataForecast;
 let town;
